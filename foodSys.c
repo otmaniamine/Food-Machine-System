@@ -37,8 +37,8 @@ void addProduct(); // Person 4
 void viewProducts(); // Person 4
 void updateProduct(); // Person 5
 void deleteProduct(); // Person 5
-void customerMenu(); // Person 6
-void purchaseProduct(); // Person 6
+void customerMenu(); // wassim
+void purchaseProduct(); // wassim
 void adminMenu(); // Person 7
 void clearBuffer(); // Person 8
 
@@ -127,11 +127,44 @@ void deleteProduct() {
 }
 
 void purchaseProduct() {
-    // Implement purchasing a product
+    int id, quantity;
+    printf("Enter product ID to purchase: ");
+    scanf("%d", &id);
+    printf("Enter quantity to purchase: ");
+    scanf("%d", &quantity);
+
+    for (int i = 0; i < productCount; i++) {
+        if (products[i].id == id) {
+            if (products[i].quantity >= quantity) {
+                products[i].quantity -= quantity;
+                saveProducts();
+                printf("Purchase successful!\n");
+            } else {
+                printf("Insufficient stock!\n");
+            }
+            return;
+        }
+    }
+    printf("Product not found!\n");
 }
 
 void customerMenu() {
-    //  Implement the customer menu
+    int choice;
+    do {
+        printf("\n--- Customer Menu ---\n");
+        printf("1. View Products\n");
+        printf("2. Purchase Product\n");
+        printf("3. Logout\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: viewProducts(); break;
+            case 2: purchaseProduct(); break;
+            case 3: printf("Logging out...\n"); break;
+            default: printf("Invalid choice!\n");
+        }
+    } while (choice != 3);
 }
 
 void adminMenu() {
