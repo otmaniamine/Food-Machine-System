@@ -98,56 +98,49 @@ void saveProducts() {
         printf("Error: Unable to save products to products.txt\n");
     }
 }
-
 void registerUser() {
-    //  Implement user registration
-    User newUser, users[100];
-    int userCount = 0;
-    loadUsers(users, &userCount);
-    
+    char username[50], password[50], role[10];
     printf("Enter username: ");
-    scanf("%s", newUser.username);
+    scanf("%49s", username);
 
     // Check for unique username
     for (int i = 0; i < userCount; i++) {
-        if (strcmp(users[i].username, newUser.username) == 0) {
-            printf("Username already exists. Please try a different username.\n");
+        if (strcmp(users[i].username, username) == 0) {
+            printf("Username already exists!\n");
             return;
         }
     }
 
     printf("Enter password: ");
-    scanf("%s", newUser.password);
+    scanf("%49s", password);
     printf("Enter role (Admin/Customer): ");
-    scanf("%s", newUser.role);
+    scanf("%9s", role);
 
-    users[userCount++] = newUser;
-    saveUsers(users, userCount);
-    
-    printf("Registration successful!\n");
+    // Add new user
+    strcpy(users[userCount].username, username);
+    strcpy(users[userCount].password, password);
+    strcpy(users[userCount].role, role);
+    userCount++;
+
+    saveUsers();
+    printf("User registered successfully!\n");
 }
 
 bool loginUser(char *role) {
-    //  Implement user login
-      User users[100];
-    int userCount = 0;
-    loadUsers(users, &userCount);
-
-    char username[30], password[30];
+    char username[50], password[50];
     printf("Enter username: ");
-    scanf("%s", username);
+    scanf("%49s", username);
     printf("Enter password: ");
-    scanf("%s", password);
+    scanf("%49s", password);
 
     for (int i = 0; i < userCount; i++) {
         if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
             strcpy(role, users[i].role);
-            printf("Login successful! Welcome, %s.\n", username);
-            return 1;
+            return true;
         }
     }
-    printf("Invalid username or password. Please try again.\n");
-    return 0;
+    printf("Invalid credentials!\n");
+    return false;
 }
 
 void loadProducts() {
