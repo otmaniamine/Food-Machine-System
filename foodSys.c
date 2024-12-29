@@ -27,8 +27,8 @@ int userCount = 0;
 int productCount = 0;
 
 // Function Prototypes
-void loadUsers(); // Person 1
-void saveUsers(); // Person 1
+void loadUsers(); // LADJOUZI ADAM 
+void saveUsers(); // LADJOUZI ADAM
 void registerUser(); // akram
 bool loginUser(char *role); // akram
 void loadProducts(); // Person 3
@@ -42,13 +42,61 @@ void purchaseProduct(); // wassim.
 void adminMenu(); // Person 7
 void clearBuffer(); // Person 8
 
-// Placeholder Functions
+// Utility Functions
+void clearBuffer() {
+    while (getchar() != '\n');
+}
+
 void loadUsers() {
-    // Implement user loading from "users.txt"
+    FILE *file = fopen("users.txt", "r");
+    if (file) {
+        userCount = 0;
+        while (fscanf(file, "%49s %49s %9s", users[userCount].username, users[userCount].password, users[userCount].role) == 3) {
+            userCount++;
+            if (userCount >= MAX_USERS) break;
+        }
+        fclose(file);
+    } else {
+        printf("Error: Unable to open users.txt\n");
+    }
 }
 
 void saveUsers() {
-    //  Implement user saving to "users.txt"
+    FILE *file = fopen("users.txt", "w");
+    if (file) {
+        for (int i = 0; i < userCount; i++) {
+            fprintf(file, "%s %s %s\n", users[i].username, users[i].password, users[i].role);
+        }
+        fclose(file);
+    } else {
+        printf("Error: Unable to save users to users.txt\n");
+    }
+}
+
+void loadProducts() {
+    FILE *file = fopen("products.txt", "r");
+    if (file) {
+        productCount = 0;
+        while (fscanf(file, "%d %49s %f %d", &products[productCount].id, products[productCount].name, &products[productCount].price, &products[productCount].quantity) == 4) {
+            productCount++;
+            if (productCount >= MAX_PRODUCTS) break;
+        }
+        fclose(file);
+    } else {
+        printf("Error: Unable to open products.txt\n");
+    }
+}
+
+void saveProducts() {
+    FILE *file = fopen("products.txt", "w");
+    if (file) {
+        for (int i = 0; i < productCount; i++) {
+            fprintf(file, "%d %s %.2f %d\n", products[i].id, products[i].name, products[i].price, products[i].quantity);
+        }
+        fclose(file);
+    } else {
+        printf("Error: Unable to save products to products.txt\n");
+    }
 }
 
 void registerUser() {
