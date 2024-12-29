@@ -29,8 +29,8 @@ int productCount = 0;
 // Function Prototypes
 void loadUsers(); // Person 1
 void saveUsers(); // Person 1
-void registerUser(); // Person 2
-bool loginUser(char *role); // Person 2
+void registerUser(); // akram
+bool loginUser(char *role); // akram
 void loadProducts(); // Person 3
 void saveProducts(); // Person 3
 void addProduct(); // Person 4
@@ -53,11 +53,53 @@ void saveUsers() {
 
 void registerUser() {
     //  Implement user registration
+    User newUser, users[100];
+    int userCount = 0;
+    loadUsers(users, &userCount);
+    
+    printf("Enter username: ");
+    scanf("%s", newUser.username);
+
+    // Check for unique username
+    for (int i = 0; i < userCount; i++) {
+        if (strcmp(users[i].username, newUser.username) == 0) {
+            printf("Username already exists. Please try a different username.\n");
+            return;
+        }
+    }
+
+    printf("Enter password: ");
+    scanf("%s", newUser.password);
+    printf("Enter role (Admin/Customer): ");
+    scanf("%s", newUser.role);
+
+    users[userCount++] = newUser;
+    saveUsers(users, userCount);
+    
+    printf("Registration successful!\n");
 }
 
 bool loginUser(char *role) {
     //  Implement user login
-    return false; // Temporary return value
+      User users[100];
+    int userCount = 0;
+    loadUsers(users, &userCount);
+
+    char username[30], password[30];
+    printf("Enter username: ");
+    scanf("%s", username);
+    printf("Enter password: ");
+    scanf("%s", password);
+
+    for (int i = 0; i < userCount; i++) {
+        if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
+            strcpy(role, users[i].role);
+            printf("Login successful! Welcome, %s.\n", username);
+            return 1;
+        }
+    }
+    printf("Invalid username or password. Please try again.\n");
+    return 0;
 }
 
 void loadProducts() {
