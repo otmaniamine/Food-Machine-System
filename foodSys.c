@@ -31,8 +31,8 @@ void loadUsers(); // LADJOUZI ADAM
 void saveUsers(); // LADJOUZI ADAM
 void registerUser(); // akram
 bool loginUser(char *role); // akram
-void loadProducts(); // Person 3
-void saveProducts(); // Person 3
+void loadProducts(); // kara
+void saveProducts(); // kara
 void addProduct(); // Person 4
 void viewProducts(); // Person 4
 void updateProduct(); // IDOUI
@@ -144,12 +144,31 @@ bool loginUser(char *role) {
 }
 
 void loadProducts() {
-    // Implement product loading from "products.txt"
+    FILE *file = fopen("products.txt", "r");
+    if (file) {
+        productCount = 0;
+        while (fscanf(file, "%d %49s %f %d", &products[productCount].id, products[productCount].name, &products[productCount].price, &products[productCount].quantity) == 4) {
+            productCount++;
+            if (productCount >= MAX_PRODUCTS) break;
+        }
+        fclose(file);
+    } else {
+        printf("Error: Unable to open products.txt\n");
+    }
 }
 
 void saveProducts() {
-    // Implement product saving to "products.txt"
+    FILE *file = fopen("products.txt", "w");
+    if (file) {
+        for (int i = 0; i < productCount; i++) {
+            fprintf(file, "%d %s %.2f %d\n", products[i].id, products[i].name, products[i].price, products[i].quantity);
+        }
+        fclose(file);
+    } else {
+        printf("Error: Unable to save products to products.txt\n");
+    }
 }
+
 
 void addProduct() {
     //  Implement adding a product
