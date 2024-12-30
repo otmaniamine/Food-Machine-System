@@ -39,7 +39,7 @@ void updateProduct(); // IDOUI
 void deleteProduct(); // IDOUI
 void customerMenu(); // wassim.
 void purchaseProduct(); // wassim.
-void adminMenu(); // Person 7
+void adminMenu(); // Fouad
 void clearBuffer(); // Person 8
 //int main()  // Amine
 
@@ -266,7 +266,26 @@ void customerMenu() {
 }
 
 void adminMenu() {
-    //  Implement the admin menu
+    int choice;
+    do {
+        printf("\n--- Admin Menu ---\n");
+        printf("1. Add Product\n");
+        printf("2. View Products\n");
+        printf("3. Update Product\n");
+        printf("4. Delete Product\n");
+        printf("5. Logout\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: addProduct(); break;
+            case 2: viewProducts(); break;
+            case 3: updateProduct(); break;
+            case 4: deleteProduct(); break;
+            case 5: printf("Logging out...\n"); break;
+            default: printf("Invalid choice!\n");
+        }
+    } while (choice != 5);
 }
 
 void clearBuffer() {
