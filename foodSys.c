@@ -33,7 +33,7 @@ void registerUser(); // akram
 bool loginUser(char *role); // akram
 void loadProducts(); // kara
 void saveProducts(); // kara
-void addProduct(); // Person 4
+void addProduct(); // ilyes
 void viewProducts(); // Person 5
 void updateProduct(); // IDOUI
 void deleteProduct(); // IDOUI
@@ -172,7 +172,19 @@ void saveProducts() {
 
 
 void addProduct() {
-    //  Implement adding a product
+       Product newProduct;
+    printf("Enter product ID: ");
+    scanf("%d", &newProduct.id);
+    printf("Enter product name: ");
+    scanf("%49s", newProduct.name);
+    printf("Enter product price: ");
+    scanf("%f", &newProduct.price);
+    printf("Enter product quantity: ");
+    scanf("%d", &newProduct.quantity);
+
+    products[productCount++] = newProduct;
+    saveProducts();
+    printf("Product added successfully!\n");
 }
 
 void viewProducts() {
