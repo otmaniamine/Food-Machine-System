@@ -35,8 +35,8 @@ void loadProducts(); // Person 3
 void saveProducts(); // Person 3
 void addProduct(); // Person 4
 void viewProducts(); // Person 4
-void updateProduct(); // Person 5
-void deleteProduct(); // Person 5
+void updateProduct(); // IDOUI
+void deleteProduct(); // IDOUI
 void customerMenu(); // wassim.
 void purchaseProduct(); // wassim.
 void adminMenu(); // Person 7
