@@ -305,9 +305,7 @@ void adminMenu() {
     } while (choice != 5);
 }
 
-void clearBuffer() {
-    //  Implement clearing the input buffer
-}
+
 
 int main() {
     char role[10];
