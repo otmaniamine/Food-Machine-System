@@ -34,7 +34,7 @@ bool loginUser(char *role); // akram
 void loadProducts(); // kara
 void saveProducts(); // kara
 void addProduct(); // ilyes
-void viewProducts(); // Person 5
+void viewProducts(); // BOUCHEDOUB AYMEN
 void updateProduct(); // IDOUI
 void deleteProduct(); // IDOUI
 void customerMenu(); // wassim.
@@ -188,7 +188,12 @@ void addProduct() {
 }
 
 void viewProducts() {
-    //  Implement viewing products
+    printf("\n--- Available Products ---\n");
+    for (int i = 0; i < productCount; i++) {
+        printf("ID: %d, Name: %s, Price: %.2f, Quantity: %d\n",
+               products[i].id, products[i].name, products[i].price, products[i].quantity);
+    }
+
 }
 
 void updateProduct() {
