@@ -40,7 +40,7 @@ void deleteProduct(); // IDOUI
 void customerMenu(); // wassim.
 void purchaseProduct(); // wassim.
 void adminMenu(); // Fouad
-void clearBuffer(); // Person 8
+void clearBuffer(); 
 //int main()  // Amine
 
 // Utility Functions
