@@ -34,13 +34,14 @@ bool loginUser(char *role); // akram
 void loadProducts(); // kara
 void saveProducts(); // kara
 void addProduct(); // Person 4
-void viewProducts(); // Person 4
+void viewProducts(); // Person 5
 void updateProduct(); // IDOUI
 void deleteProduct(); // IDOUI
 void customerMenu(); // wassim.
 void purchaseProduct(); // wassim.
 void adminMenu(); // Person 7
 void clearBuffer(); // Person 8
+//int main()  // Amine
 
 // Utility Functions
 void clearBuffer() {
