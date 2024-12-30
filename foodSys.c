@@ -161,10 +161,47 @@ void viewProducts() {
 
 void updateProduct() {
     //  Implement updating a product
+    int id;
+    printf("Enter product ID to update: ");
+    scanf("%d", &id);
+
+    for (int i = 0; i < productCount; i++) {
+        if (products[i].id == id) {
+            printf("Enter new name: ");
+            scanf("%49s", products[i].name);
+            printf("Enter new price: ");
+            scanf("%f", &products[i].price);
+            printf("Enter new quantity: ");
+            scanf("%d", &products[i].quantity);
+
+            saveProducts();
+            printf("Product updated successfully!\n");
+            return;
+        }
+    }
+    printf("Product not found!\n");
+    //updateProduct terminer 30/12
 }
 
 void deleteProduct() {
     //  Implement deleting a product
+    int id;
+    printf("Enter product ID to delete: ");
+    scanf("%d", &id);
+
+    for (int i = 0; i < productCount; i++) {
+        if (products[i].id == id) {
+            for (int j = i; j < productCount - 1; j++) {
+                products[j] = products[j + 1];
+            }
+            productCount--;
+            saveProducts();
+            printf("Product deleted successfully!\n");
+            return;
+        }
+    }
+    printf("Product not found!\n");
+    //deleteProduc terminer 30/12
 }
 
 void purchaseProduct() {
